@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour {
 	
 	private int currentMultiplier;
 	
+	Collider2D currentGround;
+	
 	void Awake () 
 	{
 		anim = GetComponent<Animator>();
@@ -26,22 +28,6 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetButtonDown("Jump") && grounded)
 		{
 			jump = true;
-		}
-	}
-	
-	void OnCollisionEnter2D(Collision2D coll) {
-		if (coll.gameObject.tag == "Ground") {
-			grounded = true;
-			PlatformController controller = coll.gameObject.GetComponent<PlatformController>();
-			controller.Touch();
-			ApplyModifier(controller.Modifier);
-		}
-	}
-	
-	void OnCollisionExit2D(Collision2D coll) {
-		if (coll.gameObject.tag == "Ground") {
-			grounded = false;
-			ResetMultiplier();
 		}
 	}
 	
@@ -67,9 +53,21 @@ public class PlayerController : MonoBehaviour {
 			anim.SetTrigger("Jump");
 			rb2d.AddForce(new Vector2(0f, jumpForce));
 			jump = false;
+			grounded = false;
 		}
+		
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 10, 1 << LayerMask.NameToLayer("Ground"));
+		if (hit.collider != null ) {
+			currentGround = hit.collider;
+			float distance = Mathf.Abs(hit.point.y - transform.position.y);
+			if (distance <= 0.21) {
+				grounded = true;
+				PlatformController controller = hit.collider.GetComponent<PlatformController>();
+				controller.Touch();
+				ApplyModifier(controller.Modifier);
+			} 
+		}		
 	}
-	
 	
 	void Flip()
 	{
@@ -86,11 +84,13 @@ public class PlayerController : MonoBehaviour {
 			jumpForce *= 2; break;		
 		}
 		}
+		ResetMultiplier();
 	}
 	
 	void ResetMultiplier() {
 		switch (currentMultiplier) {
 		case 1 : {
+			Debug.Log("DOUBLE JUMP");
 			jumpForce = 2; break;	
 		}
 		}

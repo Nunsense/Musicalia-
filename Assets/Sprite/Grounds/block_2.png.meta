@@ -1,13 +1,11 @@
 fileFormatVersion: 2
-guid: 58af79bc5171f4151acfb4bbd3ac9f53
-timeCreated: 1437254235
+guid: d5bf2480a09594ee3835bb523b8dac2f
+timeCreated: 1437253978
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: block_elastic_0
-    21300002: block_elastic_1
-    21300004: block_elastic_2
-    21300006: block_elastic_3
+    21300000: block_2_0
+    21300002: block_2_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -46,52 +44,32 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 0, y: 52, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: block_elastic_0
+    - name: block_2_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 26
-        width: 32
-        height: 21
+        y: 52
+        width: 253
+        height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: block_elastic_1
-      rect:
-        serializedVersion: 2
-        x: 37
-        y: 26
-        width: 106
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: block_elastic_2
+    - name: block_2_1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 21
+        width: 253
+        height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: block_elastic_3
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 11
-        width: 125
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
