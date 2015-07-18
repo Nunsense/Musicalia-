@@ -8,11 +8,12 @@ public class PlayerController : MonoBehaviour {
 	public float moveForce = 365f;
 	public float maxSpeed = 5f;
 	public float jumpForce = 1000f;
-	public Transform groundCheck;
 	
 	[SerializeField] private bool grounded = false;
 	private Animator anim;
 	private Rigidbody2D rb2d;
+	
+	private int currentMultiplier;
 	
 	void Awake () 
 	{
@@ -29,13 +30,19 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter2D(Collision2D coll) {
-		if (coll.gameObject.tag == "Ground")
+		if (coll.gameObject.tag == "Ground") {
 			grounded = true;
+			PlatformController controller = coll.gameObject.GetComponent<PlatformController>();
+			controller.Touch();
+			ApplyModifier(controller.Modifier);
+		}
 	}
 	
 	void OnCollisionExit2D(Collision2D coll) {
-		if (coll.gameObject.tag == "Ground")
+		if (coll.gameObject.tag == "Ground") {
 			grounded = false;
+			ResetMultiplier();
+		}
 	}
 	
 	void FixedUpdate()
@@ -70,5 +77,23 @@ public class PlayerController : MonoBehaviour {
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
+	}
+	
+	void ApplyModifier(int multi) {
+		currentMultiplier = multi;
+		switch (currentMultiplier) {
+		case 1 : {
+			jumpForce *= 2; break;		
+		}
+		}
+	}
+	
+	void ResetMultiplier() {
+		switch (currentMultiplier) {
+		case 1 : {
+			jumpForce = 2; break;	
+		}
+		}
+		currentMultiplier = -1;
 	}
 }

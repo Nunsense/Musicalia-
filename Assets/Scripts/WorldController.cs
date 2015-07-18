@@ -3,7 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class WorldController : MonoBehaviour {
-	public GameObject platform;
+	public GameObject groundNormal;
+	public GameObject groundFall;
+	public GameObject groundJump;
+	
+	public float heightMultiplier;
+	public float groundWidth;
+	
+	private List<PlatformController> plataforms;
 	
 	void Start () {
 		StartLevel("");
@@ -13,15 +20,59 @@ public class WorldController : MonoBehaviour {
 	
 	}
 	
-	List<PlatformController> LevelGenerator(string json) {
-		List<PlatformController> plataforms = new List<PlatformController>();
+	class Plato {
+		public int Num { get; set; } 
+		public int Type { get; set; }
+		public int Modifier { get; set; }
 		
+		public Plato(int _num, int _type, int _modifier) {
+			Num = _num;
+			Type = _type;
+			Modifier = _modifier;
+		}
+	}
+	
+	List<PlatformController> LevelGenerator(string json) {
+		plataforms = new List<PlatformController>();
+		
+		List<Plato> platos = new List<Plato>();
 		for (int i = 0; i < 20; i ++) {
-			GameObject plataform = GameObject.Instantiate(platform);
-			PlatformController platforms = platform.GetComponent<PlatformController>();
-			platforms.Initialize(2, 2, 0);
+			int type = Random.Range(1, 4);
+			int num = Random.Range(0, 2);
+			int modifier = 0;
+			if (type == 3) {
+				modifier = 1;
+			}
+			platos.Add(new Plato(num, type, modifier));
+			if (type == 3) {
+				platos.Add(new Plato(0, 0, 0));
+			}
+		}
+
+		for (int i = 0; i < platos.Count; i ++) {
+			Plato plato = platos[i];
 			
-			platform.transform.position = new Vector3(i * 1, Random.Range(-2, 2), 0);
+			GameObject plataform = null;
+			
+			switch (plato.Type) {
+			case 1 : {
+				plataform = GameObject.Instantiate(groundNormal);
+				break;	
+			}
+			case 2 : {
+				plataform = GameObject.Instantiate(groundFall);
+				break;	
+			}
+			case 3 : {
+				plataform = GameObject.Instantiate(groundJump);
+				break;	
+			}
+			}
+			if (plataform) {
+				PlatformController controller = plataform.GetComponent<PlatformController>();
+				controller.Initialize(plato.Num, plato.Type, plato.Modifier);
+				plataform.transform.position = new Vector3(i * groundWidth, plato.Num * heightMultiplier, 0);
+			}
 		}
 		
 		return plataforms;
