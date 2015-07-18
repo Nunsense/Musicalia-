@@ -7,6 +7,7 @@ public class PlatformController : MonoBehaviour {
 	public int Num { get; set; } 
 	public int Type { get; set; }
 	public int Modifier { get; set; }
+	public int Note { get; set; }
 	
 	SpriteRenderer renderer;
 	Animator anim;
@@ -24,9 +25,11 @@ public class PlatformController : MonoBehaviour {
 	
 	public void Touch() {
 		anim.SetTrigger("Touch");
+		var transpose = -4;
+		PianoController.Instance.Notes [Random.Range(0,12)].Play ();
 	}
 	
 	void Start () {
-		
+
 	}
 }
