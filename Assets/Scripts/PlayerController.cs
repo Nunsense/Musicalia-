@@ -31,11 +31,6 @@ public class PlayerController : MonoBehaviour {
 	
 	void Update () 
 	{
-		if (Input.GetButtonDown("Jump") && grounded)
-		{
-			jump = true;
-		}
-		
 		if (transform.position.y < -10) {
 			WorldController.instance.Reset();
 			Debug.Log("Out of the game");
@@ -44,23 +39,13 @@ public class PlayerController : MonoBehaviour {
 	
 	void FixedUpdate()
 	{
-		float horizontal = Input.GetAxis("Horizontal");
-		
-//		anim.SetFloat("Speed", Mathf.Abs(horizontal));
-		
-		if (horizontal * rb2d.velocity.x < maxSpeed)
-			rb2d.AddForce(Vector2.right * horizontal * moveForce);
-		
-		if (Mathf.Abs(rb2d.velocity.x) > maxSpeed)
-			rb2d.velocity = new Vector2(Mathf.Sign(rb2d.velocity.x) * maxSpeed, rb2d.velocity.y);
-
-		if (jump)
-		{
-//			anim.SetTrigger("Jump");
-			rb2d.AddForce(new Vector2(0f, jumpForce));
-			jump = false;
-			grounded = false;
-		}
+//		float horizontal = Input.GetAxis("Horizontal");
+//		move (horizontal);
+//		
+//		if (jump)
+//		{
+//			Jump();
+//		}
 //		2280X1440
 		RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 1, 1 << LayerMask.NameToLayer("Ground"));
 		if (hit.collider != null) {
@@ -78,6 +63,20 @@ public class PlayerController : MonoBehaviour {
 		} else {
 			currentGround = null;
 			ResetMultiplier();
+		}
+	}
+	public void Move(float value){
+		if (value * rb2d.velocity.x < maxSpeed)
+			rb2d.AddForce(Vector2.right * value * moveForce);
+		
+		if (Mathf.Abs(rb2d.velocity.x) > maxSpeed)
+			rb2d.velocity = new Vector2(Mathf.Sign(rb2d.velocity.x) * maxSpeed, rb2d.velocity.y);
+	}
+	public void Jump(){
+		if (grounded) {
+			rb2d.AddForce (new Vector2 (0f, jumpForce));
+			jump = false;
+			grounded = false;
 		}
 	}
 	
