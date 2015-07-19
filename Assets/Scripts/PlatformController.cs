@@ -16,14 +16,26 @@ public enum MovementModifiers {
 	patrolHorizontal = 5
 }
 
+public enum Notes { 
+	C = 0,
+	Cs = 1,
+	D = 2, 
+	Ds = 3, 
+	E = 4,
+	F = 5,
+	Fs = 6,
+	G = 7,
+	Gs = 8,
+	A = 9,
+	As = 10,
+	B = 11
+}
+
 public class PlatformController : MonoBehaviour {
-	
-	
-	public int num;
 	public int type;
 	public MovementModifiers movementModifier;
 	public PlayerModifiers playerModifier;
-	public int note;
+	public Notes note;
 	public float delayTime = 1;
 	public float maxPos;
 	public float minPos;
@@ -42,15 +54,15 @@ public class PlatformController : MonoBehaviour {
 		trans = transform;
 	}
 	
-	public void Initialize(int _num, int _type, PlayerModifiers _playerModifier, MovementModifiers _movementModifier) {
-		num = _num;
+	public void Initialize(Notes _note, int _type, PlayerModifiers _playerModifier, MovementModifiers _movementModifier) {
+		note = _note;
 		type = _type;
 		playerModifier = _playerModifier;
 		movementModifier = _movementModifier;
 	}
 	
 	public void Touch() {
-		PianoController.Instance.Notes [num].Play ();
+		PianoController.Instance.Notes[(int)note].Play ();
 		anim.SetTrigger("Touch");
 		modifierActivated = true;
 	}
