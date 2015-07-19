@@ -40,7 +40,19 @@ public enum Notes {
 	G2s = 20,
 	A2 = 21,
 	A2s = 22,
-	B2 = 23
+	B2 = 23,
+	C1 = 24,
+	C1s = 25,
+	D1 = 26, 
+	D1s = 27, 
+	E1 = 28,
+	F1 = 29,
+	F1s = 30,
+	G1 = 31,
+	G1s = 32,
+	A1 = 33,
+	A1s = 34,
+	B1 = 35,
 }
 
 public class PlatformController : MonoBehaviour {
