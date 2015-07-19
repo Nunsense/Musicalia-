@@ -122,7 +122,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 197970}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.97000003, y: 4.13000011, z: 0}
+  m_LocalPosition: {x: -3.97000003, y: 4.13000011, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 481580}
@@ -291,8 +291,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 3
-  modifier: 0
+  movementModifier: 0
+  playerModifier: 1
   note: 0
+  delayTime: 2
+  maxPos: 0
+  minPos: 0
 --- !u!212 &21225344
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -315,7 +319,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: -579705337
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300002, guid: 58af79bc5171f4151acfb4bbd3ac9f53, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -341,7 +345,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: -579705337
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 58af79bc5171f4151acfb4bbd3ac9f53, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -367,7 +371,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: -579705337
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300006, guid: 58af79bc5171f4151acfb4bbd3ac9f53, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -393,7 +397,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: -579705337
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300004, guid: 58af79bc5171f4151acfb4bbd3ac9f53, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -489,6 +493,18 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: type
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: playerModifier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SortingLayerID
+      value: -579705337
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.z
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

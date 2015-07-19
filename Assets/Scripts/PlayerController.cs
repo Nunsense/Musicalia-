@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
 	private Animator anim;
 	private Rigidbody2D rb2d;
 	
-	private int currentMultiplier;
+	private PlayerModifiers currentMultiplier;
 	
 	[SerializeField] PlatformController currentGround;
 	
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour {
 					currentGround = controller;
 				
 					controller.Touch();
-					ApplyModifier(controller.modifier);
+					ApplyModifier(controller.playerModifier);
 					grounded = true;
 				}
 			}
@@ -92,6 +92,9 @@ public class PlayerController : MonoBehaviour {
 			col.gameObject.SetActive(false);
 			coins++;
 			Debug.Log("Coins: " + coins);
+		} else if (col.tag == "Enemy") {
+			col.gameObject.SetActive(false);
+			Debug.Log("Killed");
 		}
 	}
 	
@@ -103,10 +106,10 @@ public class PlayerController : MonoBehaviour {
 		transform.localScale = theScale;
 	}
 	
-	void ApplyModifier(int multi) {
+	void ApplyModifier(PlayerModifiers multi) {
 		currentMultiplier = multi;
 		switch (currentMultiplier) {
-		case 1 : {
+		case PlayerModifiers.longJump : {
 			jumpForce *= 1.5f; 
 			break;		
 		}
@@ -114,14 +117,14 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	void ResetMultiplier() {
-		if (currentMultiplier != -1) {
+		if (currentMultiplier != PlayerModifiers.none) {
 			switch (currentMultiplier) {
-			case 1 : {
+			case PlayerModifiers.longJump : {
 				jumpForce /= 1.5f; 
 				break;	
 			}
 			}
-			currentMultiplier = -1;
+			currentMultiplier = PlayerModifiers.none;
 		}
 	}
 	
