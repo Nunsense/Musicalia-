@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour {
 	
 	[SerializeField] PlatformController currentGround;
 	
+	[SerializeField] int coins = 0;
+	
 	void Awake () 
 	{
 		anim = GetComponent<Animator>();
@@ -65,13 +67,21 @@ public class PlayerController : MonoBehaviour {
 					currentGround = controller;
 				
 					controller.Touch();
-					ApplyModifier(controller.Modifier);
+					ApplyModifier(controller.modifier);
 					grounded = true;
 				}
 			}
 		} else {
 			currentGround = null;
 			ResetMultiplier();
+		}
+	}
+	
+	void OnTriggerEnter2D(Collider2D col) {
+		if (col.tag == "Coin") {
+			col.gameObject.SetActive(false);
+			coins++;
+			Debug.Log("Coins: " + coins);
 		}
 	}
 	

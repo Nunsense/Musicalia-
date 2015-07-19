@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 public class PlatformController : MonoBehaviour {
 	
-	public int Num { get; set; } 
-	public int Type { get; set; }
-	public int Modifier { get; set; }
-	public int Note { get; set; }
+	public int num;
+	public int type;
+	public int modifier;
+	public int note;
 	
 	SpriteRenderer renderer;
 	Animator anim;
@@ -18,13 +18,13 @@ public class PlatformController : MonoBehaviour {
 	}
 	
 	public void Initialize(int _num, int _type, int _modifier) {
-		Num = _num;
-		Type = _type;
-		Modifier = _modifier;
+		num = _num;
+		type = _type;
+		modifier = _modifier;
 	}
 	
 	public void Touch() {
-		PianoController.Instance.Notes [Num].Play ();
+		PianoController.Instance.Notes [num].Play ();
 		anim.SetTrigger("Touch");
 	}
 	
