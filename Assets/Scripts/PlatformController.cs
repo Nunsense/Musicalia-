@@ -31,4 +31,12 @@ public class PlatformController : MonoBehaviour {
 	void Start () {
 
 	}
+	
+	public void Reset() {
+		gameObject.SetActive(true);
+		Transform coin = transform.FindChild("Coin");
+		if (coin) {
+			coin.gameObject.SetActive(true);
+		}
+	}
 }

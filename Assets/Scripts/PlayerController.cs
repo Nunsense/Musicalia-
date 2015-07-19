@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] PlatformController currentGround;
 	
 	[SerializeField] int coins = 0;
+	Vector3 initialPosition;
 	
 	void Awake () 
 	{
@@ -25,11 +26,20 @@ public class PlayerController : MonoBehaviour {
 		rb2d = GetComponent<Rigidbody2D>();
 	}
 	
+	void Start() {
+		initialPosition	= transform.position;
+	}
+	
 	void Update () 
 	{
 		if (Input.GetButtonDown("Jump") && grounded)
 		{
 			jump = true;
+		}
+		
+		if (transform.position.y < -10) {
+			WorldController.instance.Reset();
+			Debug.Log("Out of the game");
 		}
 	}
 	
@@ -113,5 +123,9 @@ public class PlayerController : MonoBehaviour {
 			}
 			currentMultiplier = -1;
 		}
+	}
+	
+	public void Reset() {
+		transform.position = initialPosition;
 	}
 }

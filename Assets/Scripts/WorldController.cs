@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class WorldController : MonoBehaviour {
+	public static WorldController instance;
+
 	public GameObject groundNormal;
 	public GameObject groundFall;
 	public GameObject groundJump;
@@ -11,6 +13,12 @@ public class WorldController : MonoBehaviour {
 	public float groundWidth;
 	
 	private List<PlatformController> plataforms;
+	private PlayerController player;
+	
+	void Awake() {
+		instance = this;
+		player = FindObjectOfType<PlayerController>();
+	}
 	
 	void Start () {
 		StartLevel("");
@@ -72,6 +80,7 @@ public class WorldController : MonoBehaviour {
 				PlatformController controller = plataform.GetComponent<PlatformController>();
 				controller.Initialize(plato.Num, plato.Type, plato.Modifier);
 				plataform.transform.position = new Vector3(i * groundWidth, plato.Num * heightMultiplier, 0);
+				plataforms.Add(controller);
 			}
 		}
 		
@@ -80,5 +89,12 @@ public class WorldController : MonoBehaviour {
 	
 	public void StartLevel(string json) {
 		LevelGenerator(json);
+	}
+	
+	public void Reset() {
+		for (int i = 0; i < plataforms.Count; i ++) {
+			plataforms[i].Reset();
+		}
+		player.Reset();
 	}
 }
