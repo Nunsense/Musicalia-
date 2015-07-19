@@ -16,8 +16,7 @@ public class PlayerController : MonoBehaviour {
 	private PlayerModifiers currentMultiplier;
 	
 	[SerializeField] PlatformController currentGround;
-	
-	[SerializeField] int coins = 0;
+
 	Vector3 initialPosition;
 	
 	void Awake () 
@@ -54,12 +53,7 @@ public class PlayerController : MonoBehaviour {
 		
 		if (Mathf.Abs(rb2d.velocity.x) > maxSpeed)
 			rb2d.velocity = new Vector2(Mathf.Sign(rb2d.velocity.x) * maxSpeed, rb2d.velocity.y);
-		
-		if (horizontal > 0 && !facingRight)
-			Flip();
-		else if (horizontal < 0 && facingRight)
-			Flip();
-		
+
 		if (jump)
 		{
 //			anim.SetTrigger("Jump");
@@ -90,22 +84,14 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.tag == "Coin") {
 			col.gameObject.SetActive(false);
-			coins++;
-			Debug.Log("Coins: " + coins);
+			WorldController.instance.AddCoin();
 		} else if (col.tag == "Enemy") {
 			col.gameObject.SetActive(false);
 			Debug.Log("Killed");
+			WorldController.instance.Reset();
 		}
 	}
-	
-	void Flip()
-	{
-		facingRight = !facingRight;
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
-	}
-	
+
 	void ApplyModifier(PlayerModifiers multi) {
 		currentMultiplier = multi;
 		switch (currentMultiplier) {
@@ -130,5 +116,6 @@ public class PlayerController : MonoBehaviour {
 	
 	public void Reset() {
 		transform.position = initialPosition;
+		rb2d.velocity = Vector2.zero;
 	}
 }

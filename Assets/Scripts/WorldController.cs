@@ -12,8 +12,14 @@ public class WorldController : MonoBehaviour {
 	public float heightMultiplier;
 	public float groundWidth;
 	
+	public Animator tintAnim;
+	
 //	private List<PlatformController> plataforms;
+	PlatformController[] plataforms;
 	private PlayerController player;
+	
+	[SerializeField] int totalCoins = 0;
+	[SerializeField] int coinsTaken = 0;
 	
 	void Awake() {
 		instance = this;
@@ -21,6 +27,12 @@ public class WorldController : MonoBehaviour {
 	}
 	
 	void Start () {
+		plataforms = FindObjectsOfType<PlatformController>();
+		for (int i = 0; i < plataforms.Length; i ++) {
+			if (plataforms[i].type == 5) {
+				totalCoins ++;
+			}
+		}
 //		StartLevel("");
 	}
 	
@@ -92,14 +104,25 @@ public class WorldController : MonoBehaviour {
 //	}
 	
 	public void Reset() {
-		Object[] plataforms = FindObjectsOfType<PlatformController>();
 		for (int i = 0; i < plataforms.Length; i ++) {
-			(plataforms[i] as PlatformController).Reset();
-		}
-		Object[] coins = FindObjectsOfType<PlatformController>();
-		for (int i = 0; i < coins.Length; i ++) {
-			(coins[i] as PlatformController).Reset();
+			plataforms[i].Reset();
 		}
 		player.Reset();
+		coinsTaken = 0;
+		tintAnim.SetInteger("step", 0);
+	}
+	
+	public void AddCoin() {
+		coinsTaken ++;
+		Debug.Log("Coins: " + coinsTaken);
+		
+		float advance = totalCoins / coinsTaken;
+		if (advance > 0.25f) {
+			tintAnim.SetInteger("step", 1);
+		} else if (advance > 0.55f) {
+			tintAnim.SetInteger("step", 2);
+		} else if (advance > 0.9f) {
+			tintAnim.SetInteger("step", 3);
+		}
 	}
 }

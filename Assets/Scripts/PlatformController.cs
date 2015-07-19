@@ -80,16 +80,7 @@ public class PlatformController : MonoBehaviour {
 	}
 	
 	void Start () {
-		switch (movementModifier) {
-		case MovementModifiers.patrolHorizontal : {
-			rb2d.velocity = new Vector2(1, 0);
-			break;
-		}
-		case MovementModifiers.patrolVertical : {
-			rb2d.velocity = new Vector2(0, -1);
-			break;
-		}
-		}
+		Run();
 	}
 	
 	void Update() {
@@ -138,9 +129,19 @@ public class PlatformController : MonoBehaviour {
 		modifierActivated = false;
 		waitingTime = 0;
 		rb2d.velocity = Vector2.zero;
-		Transform coin = transform.FindChild("Coin");
-		if (coin) {
-			coin.gameObject.SetActive(true);
+		Run();
+	}
+	
+	void Run() {
+		switch (movementModifier) {
+		case MovementModifiers.patrolHorizontal : {
+			rb2d.velocity = new Vector2(1, 0);
+			break;
+		}
+		case MovementModifiers.patrolVertical : {
+			rb2d.velocity = new Vector2(0, -1);
+			break;
+		}
 		}
 	}
 }
