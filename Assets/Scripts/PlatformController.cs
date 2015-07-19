@@ -28,7 +28,19 @@ public enum Notes {
 	Gs = 8,
 	A = 9,
 	As = 10,
-	B = 11
+	B = 11,
+	C2 = 12,
+	C2s = 13,
+	D2 = 14, 
+	D2s = 15, 
+	E2 = 16,
+	F2 = 17,
+	F2s = 18,
+	G2 = 19,
+	G2s = 20,
+	A2 = 21,
+	A2s = 22,
+	B2 = 23
 }
 
 public class PlatformController : MonoBehaviour {
