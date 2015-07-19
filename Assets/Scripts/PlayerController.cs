@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour {
 	
 	private int currentMultiplier;
 	
-	Collider2D currentGround;
+	[SerializeField] PlatformController currentGround;
 	
 	void Awake () 
 	{
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		float horizontal = Input.GetAxis("Horizontal");
 		
-		anim.SetFloat("Speed", Mathf.Abs(horizontal));
+//		anim.SetFloat("Speed", Mathf.Abs(horizontal));
 		
 		if (horizontal * rb2d.velocity.x < maxSpeed)
 			rb2d.AddForce(Vector2.right * horizontal * moveForce);
@@ -50,23 +50,29 @@ public class PlayerController : MonoBehaviour {
 		
 		if (jump)
 		{
-			anim.SetTrigger("Jump");
+//			anim.SetTrigger("Jump");
 			rb2d.AddForce(new Vector2(0f, jumpForce));
 			jump = false;
 			grounded = false;
 		}
-		
-		RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 10, 1 << LayerMask.NameToLayer("Ground"));
-		if (hit.collider != null ) {
-			currentGround = hit.collider;
+//		2280X1440
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 1, 1 << LayerMask.NameToLayer("Ground"));
+		if (hit.collider != null) {
 			float distance = Mathf.Abs(hit.point.y - transform.position.y);
-			if (distance <= 0.21) {
-				grounded = true;
-				PlatformController controller = hit.collider.GetComponent<PlatformController>();
-				controller.Touch();
-				ApplyModifier(controller.Modifier);
-			} 
-		}		
+			if (distance <= 0.41) {
+				PlatformController controller = hit.collider.GetComponent<PlatformController>() ?? hit.collider.GetComponentInParent<PlatformController>();
+				if (controller != currentGround) {
+					currentGround = controller;
+				
+					controller.Touch();
+					ApplyModifier(controller.Modifier);
+					grounded = true;
+				}
+			}
+		} else {
+			currentGround = null;
+			ResetMultiplier();
+		}
 	}
 	
 	void Flip()
@@ -81,19 +87,21 @@ public class PlayerController : MonoBehaviour {
 		currentMultiplier = multi;
 		switch (currentMultiplier) {
 		case 1 : {
-			jumpForce *= 2; break;		
+			jumpForce *= 1.5f; 
+			break;		
 		}
 		}
-		ResetMultiplier();
 	}
 	
 	void ResetMultiplier() {
-		switch (currentMultiplier) {
-		case 1 : {
-			Debug.Log("DOUBLE JUMP");
-			jumpForce = 2; break;	
+		if (currentMultiplier != -1) {
+			switch (currentMultiplier) {
+			case 1 : {
+				jumpForce /= 1.5f; 
+				break;	
+			}
+			}
+			currentMultiplier = -1;
 		}
-		}
-		currentMultiplier = -1;
 	}
 }

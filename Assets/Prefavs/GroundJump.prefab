@@ -83,9 +83,10 @@ GameObject:
   - 4: {fileID: 454220}
   - 50: {fileID: 5090402}
   - 114: {fileID: 11429748}
-  m_Layer: 8
+  - 95: {fileID: 9555294}
+  m_Layer: 0
   m_Name: GroundJump
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -246,7 +247,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1.21000004, y: .150000006}
+  m_Size: {x: 1, y: .200000003}
 --- !u!61 &6182232
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -259,7 +260,24 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: .119999997}
+  m_Size: {x: 1, y: .200000003}
+--- !u!95 &9555294
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197970}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9a17f059077f143d88d61dcddab870b0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11429748
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -24,9 +24,8 @@ public class PlatformController : MonoBehaviour {
 	}
 	
 	public void Touch() {
+		PianoController.Instance.Notes [Num].Play ();
 		anim.SetTrigger("Touch");
-		var transpose = -4;
-		PianoController.Instance.Notes [Random.Range(0,12)].Play ();
 	}
 	
 	void Start () {
