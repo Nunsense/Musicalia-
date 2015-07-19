@@ -59,24 +59,20 @@ public class PlatformController : MonoBehaviour {
 	Rigidbody2D rb2d;
 	Transform trans;
 	AudioSource audio;
+	ParticleSystem particles;
 	
 	void Awake() {
 		renderer = GetComponentInChildren<SpriteRenderer>();
 		anim = GetComponent<Animator>();
 		rb2d = GetComponent<Rigidbody2D>();
 		trans = transform;
-	}
-	
-	public void Initialize(Notes _note, int _type, PlayerModifiers _playerModifier, MovementModifiers _movementModifier) {
-		note = _note;
-		type = _type;
-		playerModifier = _playerModifier;
-		movementModifier = _movementModifier;
+		particles = GetComponent<ParticleSystem>();
 	}
 	
 	public void Touch() {
 		if (type != 666) {
 			audio.Play();
+			particles.Play();
 			PianoController.Instance.Notes[(int)note].Play ();
 			if (anim) 
 				anim.SetTrigger("Touch");
