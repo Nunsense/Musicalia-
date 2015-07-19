@@ -43,6 +43,10 @@ public class WorldController : MonoBehaviour {
 	
 	}
 	
+	public Color RandomColor() {
+		return colors[Random.Range(0, colors.Length)];
+	}
+	
 //	class Plato {
 //		public int Num { get; set; } 
 //		public int Type { get; set; }

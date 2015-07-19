@@ -57,6 +57,8 @@ public class PlayerController : MonoBehaviour {
 				
 					controller.Touch();
 					ApplyModifier(controller.playerModifier);
+					controller.SetColor(WorldController.instance.RandomColor());
+					
 					grounded = true;
 				}
 			}
