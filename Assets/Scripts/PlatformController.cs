@@ -71,12 +71,12 @@ public class PlatformController : MonoBehaviour {
 	
 	public void Touch() {
 		if (type != 666) {
+			if (anim) 
+				anim.SetTrigger("Touch");
+			
 			audio.Play();
 			particles.Play();
 			PianoController.Instance.Notes[(int)note].Play ();
-			if (anim) 
-				anim.SetTrigger("Touch");
-		
 			modifierActivated = true;
 		}	
 	}
