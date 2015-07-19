@@ -4187,11 +4187,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 717293480}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.28999996, y: 8.28999996, z: 20}
+  m_LocalPosition: {x: -.147753954, y: 1.99251461, z: -64.0859375}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1839380479}
+  m_RootOrder: 0
 --- !u!114 &717293483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8379,7 +8379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites: {fileID: 0}
-  multiplier: .00999999978
+  multiplier: .100000001
   distance: 16
 --- !u!1001 &1133948401
 Prefab:
@@ -10862,7 +10862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites: {fileID: 0}
-  multiplier: 9.99999975e-05
+  multiplier: .00100000005
   distance: 15.6800003
 --- !u!4 &1588290518 stripped
 Transform:
@@ -13293,6 +13293,46 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 433912, guid: 413b01fafe396430da8e12210ae6533d, type: 2}
   m_PrefabInternal: {fileID: 1835518365}
+--- !u!1 &1839380477
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1839380479}
+  - 114: {fileID: 1839380478}
+  m_Layer: 0
+  m_Name: PlayerControls
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1839380478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1839380477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0d4d1d4744fc48a6b6af39b6c16261a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1839380479
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1839380477}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.43775392, y: 6.29748535, z: 84.0859375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 717293482}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
 --- !u!1 &1841982394
 GameObject:
   m_ObjectHideFlags: 0
@@ -13971,7 +14011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites: {fileID: 0}
-  multiplier: .00100000005
+  multiplier: .00999999978
   distance: 18.5100002
 --- !u!1001 &1922767242
 Prefab:
@@ -14472,7 +14512,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!1001 &1992287212
 Prefab:
   m_ObjectHideFlags: 0
