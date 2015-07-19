@@ -7,3 +7,5 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/level1.unity
+  - enabled: 1
+    path: Assets/Scenes/end_game.unity

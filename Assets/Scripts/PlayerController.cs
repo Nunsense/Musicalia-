@@ -90,9 +90,8 @@ public class PlayerController : MonoBehaviour {
 			Debug.Log("Killed");
 			WorldController.instance.Reset();
 		} else if (col.tag == "EndOfGame") {
-			col.gameObject.SetActive(false);
 			Debug.Log("EndOfGame");
-			WorldController.instance.Reset();
+			Application.LoadLevel(1);
 		}
 	}
 
