@@ -21,6 +21,8 @@ public class WorldController : MonoBehaviour {
 	[SerializeField] int totalCoins = 0;
 	[SerializeField] int coinsTaken = 0;
 	
+	public Color[] colors;
+	
 	void Awake() {
 		instance = this;
 		player = FindObjectOfType<PlayerController>();
@@ -31,6 +33,7 @@ public class WorldController : MonoBehaviour {
 		for (int i = 0; i < plataforms.Length; i ++) {
 			if (plataforms[i].type == 5) {
 				totalCoins ++;
+				plataforms[i].SetColor(colors[Random.Range(0, colors.Length)]);
 			}
 		}
 //		StartLevel("");

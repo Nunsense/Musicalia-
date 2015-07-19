@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 		} else {
+			grounded = false;
 			currentGround = null;
 			ResetMultiplier();
 		}
@@ -74,7 +75,7 @@ public class PlayerController : MonoBehaviour {
 	}
 	public void Jump(){
 		if (grounded) {
-			rb2d.AddForce (new Vector2 (0f, jumpForce));
+			rb2d.AddForce (new Vector2 (0f, jumpForce + (rb2d.velocity.x * 70)));
 			jump = false;
 			grounded = false;
 		}
@@ -87,6 +88,10 @@ public class PlayerController : MonoBehaviour {
 		} else if (col.tag == "Enemy") {
 			col.gameObject.SetActive(false);
 			Debug.Log("Killed");
+			WorldController.instance.Reset();
+		} else if (col.tag == "EndOfGame") {
+			col.gameObject.SetActive(false);
+			Debug.Log("EndOfGame");
 			WorldController.instance.Reset();
 		}
 	}

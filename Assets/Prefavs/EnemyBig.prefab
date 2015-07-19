@@ -13,7 +13,9 @@ GameObject:
   - 114: {fileID: 11438936}
   - 95: {fileID: 9539674}
   - 58: {fileID: 5817428}
-  m_Layer: 0
+  - 61: {fileID: 6192550}
+  - 61: {fileID: 6158488}
+  m_Layer: 8
   m_Name: EnemyBig
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -27,7 +29,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 197970}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.4430351, y: -.32636261, z: 100}
+  m_LocalPosition: {x: 194.915405, y: 4.89941311, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -54,13 +56,39 @@ CircleCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 197970}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: .430000007
+--- !u!61 &6158488
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197970}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -.119999997}
+  serializedVersion: 2
+  m_Size: {x: 1, y: .449999988}
+--- !u!61 &6192550
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197970}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: .230000004}
+  serializedVersion: 2
+  m_Size: {x: 1.33000004, y: .159999996}
 --- !u!95 &9539674
 Animator:
   serializedVersion: 3
@@ -90,12 +118,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  movementModifier: 0
+  movementModifier: 5
   playerModifier: 0
   note: 0
   delayTime: 2
-  maxPos: 0
-  minPos: 0
+  maxPos: 197.630005
+  minPos: 192.130005
 --- !u!212 &21202370
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -140,7 +168,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_TagString

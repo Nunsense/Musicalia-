@@ -58,6 +58,7 @@ public class PlatformController : MonoBehaviour {
 	float waitingTime = 0;
 	Rigidbody2D rb2d;
 	Transform trans;
+	AudioSource audio;
 	
 	void Awake() {
 		renderer = GetComponentInChildren<SpriteRenderer>();
@@ -74,12 +75,18 @@ public class PlatformController : MonoBehaviour {
 	}
 	
 	public void Touch() {
-		PianoController.Instance.Notes[(int)note].Play ();
-		anim.SetTrigger("Touch");
-		modifierActivated = true;
+		if (type != 666) {
+			audio.Play();
+			PianoController.Instance.Notes[(int)note].Play ();
+			if (anim) 
+				anim.SetTrigger("Touch");
+		
+			modifierActivated = true;
+		}	
 	}
 	
 	void Start () {
+		audio = Instantiate(PianoController.Instance.Notes[(int)note]);
 		Run();
 	}
 	
@@ -87,9 +94,9 @@ public class PlatformController : MonoBehaviour {
 	 	switch (movementModifier) {
 		case MovementModifiers.patrolHorizontal : {
 			if (trans.position.x >= maxPos) {
-				rb2d.velocity = new Vector2(1, 0);
-			} else if (trans.position.x <= minPos) {
 				rb2d.velocity = new Vector2(-1, 0);
+			} else if (trans.position.x <= minPos) {
+				rb2d.velocity = new Vector2(1, 0);
 			}
 			break;
 		}
@@ -130,6 +137,11 @@ public class PlatformController : MonoBehaviour {
 		waitingTime = 0;
 		rb2d.velocity = Vector2.zero;
 		Run();
+	}
+	
+	public void SetColor(Color color) {
+		color.a = 1f;
+		renderer.color = color;
 	}
 	
 	void Run() {

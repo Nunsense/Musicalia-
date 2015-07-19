@@ -12,6 +12,7 @@ GameObject:
   - 58: {fileID: 5835228}
   - 114: {fileID: 11420936}
   - 50: {fileID: 5086790}
+  - 95: {fileID: 9560062}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Coin
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 126150}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.52981949, y: 7.24673271, z: 100}
+  m_LocalPosition: {x: -9.03937626, y: 13.6514893, z: 100}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
@@ -60,6 +61,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: .0949999988
+--- !u!95 &9560062
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126150}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a5bbf71fc8f284693afc91d1d51c7275, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11420936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -102,7 +120,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -579705337
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300070, guid: 6858dfa5055574a7a8dc01f62ca2b19c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 378e8bcde1fdf4d89a90d2fb1fb2e0f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
@@ -131,6 +149,11 @@ Prefab:
       propertyPath: type
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 378e8bcde1fdf4d89a90d2fb1fb2e0f3,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 126150}

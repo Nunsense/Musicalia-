@@ -8,6 +8,8 @@ TagManager:
   - Ground
   - Coin
   - Enemy
+  - Diamond
+  - EndOfGame
   layers:
   - Default
   - TransparentFX
