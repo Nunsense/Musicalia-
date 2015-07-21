@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 	
 	[HideInInspector] public bool facingRight = true;
-	public float moveForce = 100f;
+	public float moveForce = 300f;
 	public float maxSpeed = 5f;
 	public float jumpForce = 1200f;
 	
@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour {
 	Vector3 initialPosition;
 
 	private Vector2 touchOrigin = -Vector2.one;
-	float horizontal;
 	
 	void Awake () {
 		anim   = GetComponent<Animator>();
@@ -37,6 +36,7 @@ public class PlayerController : MonoBehaviour {
 			WorldController.instance.Reset();
 			Debug.Log("Out of the game");
 		}
+
 		PlayerKeyBinding();
 	}
 	
@@ -63,13 +63,17 @@ public class PlayerController : MonoBehaviour {
 		}
 	}// Fixed update
 
-	public void Move(float value) {
-		if (value * rb2d.velocity.x < maxSpeed)
-			rb2d.AddForce(Vector2.right * value * moveForce);
+	public void Move() {
+		float moveHorizontal = Input.GetAxis("Horizontal");
+		Vector2 movement = new Vector2(moveHorizontal, 0f);
+
+		if (moveHorizontal * rb2d.velocity.x < maxSpeed)
+			rb2d.AddForce(movement * moveForce  * Time.deltaTime);
 		
-		if (Mathf.Abs(rb2d.velocity.x) > maxSpeed)
+		if (Mathf.Abs(rb2d.velocity.x) >= maxSpeed)
 			rb2d.velocity = new Vector2(Mathf.Sign(rb2d.velocity.x) * maxSpeed, rb2d.velocity.y);
 	}
+
 	public void Jump() {
 		if (grounded) {
 			rb2d.AddForce (new Vector2 (0f, jumpForce + (rb2d.velocity.x * 70)));
@@ -119,17 +123,16 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void PlayerKeyBinding() {
-		horizontal = 0f;     //Used to store the horizontal move direction.
+//		horizontal = 0f;     //Used to store the horizontal move direction.
+		float moveHorizontal = Input.GetAxis("Horizontal");
+		Vector2 movement = new Vector2(moveHorizontal, 0f);
 		
 		//Check if we are running either in the Unity editor or in a standalone build.
 		#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBPLAYER
 		
 		if (Input.GetKeyDown(KeyCode.Space)) {
 			player.Jump();
-		}
-		//Get input from the input manager, round it to an integer and store in horizontal to set x axis move direction
-		horizontal = Input.GetAxis("Horizontal");
-		player.Move(horizontal);
+		};
 		
 		//Check if we are running on iOS, Android, Windows Phone 8 or Unity iPhone
 		#elif UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
@@ -158,14 +161,12 @@ public class PlayerController : MonoBehaviour {
 				
 				//Set touchOrigin.x to -1 so that our else if statement will evaluate false and not repeat immediately.
 				
-				horizontal = x > 0 ? 1 : -1;
+				moveHorizontal = x > 0 ? 1 : -1;
 			}
 		}
 		
 		#endif //End of mobile platform dependendent compilation section started above with #elif
 		//Check if we have a non-zero value for horizontal or vertical
-		if(horizontal != 0) {
-			player.Move (horizontal);
-		}
+		player.Move();
 	}//player key binding
 }
