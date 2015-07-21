@@ -18,13 +18,6 @@ public class Backgrounds : MonoBehaviour {
 		childs = GetComponentsInChildren<Transform>();
 		player = FindObjectOfType<PlayerController>().transform;
 		positions = new float[childs.Length];
-		Vector3 pos;
-		for (int i = 0; i < childs.Length; i++) {
-			pos = childs[i].position;
-			pos.x = (i - 1) * distance;
-			childs[i].position = pos;
-			positions[i] = pos.x;
-		}
 	}
 
 	void FixedUpdate () {
