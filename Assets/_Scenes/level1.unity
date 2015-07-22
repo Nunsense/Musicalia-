@@ -7881,6 +7881,18 @@ Prefab:
       propertyPath: ShapeModule.type
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 19858500, guid: 84faac0f0bcc34bb491c17f65e77d336, type: 2}
+      propertyPath: ColorModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19858500, guid: 84faac0f0bcc34bb491c17f65e77d336, type: 2}
+      propertyPath: ColorModule.gradient.maxGradient.atime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 19858500, guid: 84faac0f0bcc34bb491c17f65e77d336, type: 2}
+      propertyPath: ColorModule.gradient.maxGradient.key1.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 84faac0f0bcc34bb491c17f65e77d336, type: 2}
   m_IsPrefabParent: 0
