@@ -63,14 +63,11 @@ public class PlayerController : MonoBehaviour {
 		}
 	}// Fixed update
 
-	public void Move() {
-		float moveHorizontal = Input.GetAxis("Horizontal");
-		Vector2 movement = new Vector2(moveHorizontal, 0f);
-
-		if (moveHorizontal * rb2d.velocity.x < maxSpeed)
-			rb2d.AddForce(movement * moveForce  * Time.deltaTime);
+	public void Move(float value){
+		if (value * rb2d.velocity.x < maxSpeed)
+			rb2d.AddForce(Vector2.right * value * moveForce * Time.deltaTime);
 		
-		if (Mathf.Abs(rb2d.velocity.x) >= maxSpeed)
+		if (Mathf.Abs(rb2d.velocity.x) > maxSpeed)
 			rb2d.velocity = new Vector2(Mathf.Sign(rb2d.velocity.x) * maxSpeed, rb2d.velocity.y);
 	}
 
@@ -167,6 +164,6 @@ public class PlayerController : MonoBehaviour {
 		
 		#endif //End of mobile platform dependendent compilation section started above with #elif
 		//Check if we have a non-zero value for horizontal or vertical
-		player.Move();
+		player.Move(moveHorizontal);
 	}//player key binding
 }
